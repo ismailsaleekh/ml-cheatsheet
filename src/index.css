@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f4f6;
+    --bg-tertiary: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+    --border: #e5e7eb;
+    --border-hover: #d1d5db;
+  }
+
+  .dark {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-tertiary: #6b7280;
+    --border: #374151;
+    --border-hover: #4b5563;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
+
+@layer components {
+  /* Block card base styles */
+  .block-card {
+    @apply relative rounded-xl p-4 bg-white dark:bg-gray-800;
+    @apply border border-gray-200 dark:border-gray-700;
+    @apply shadow-sm hover:shadow-md transition-all duration-200;
+    @apply cursor-pointer select-none;
+  }
+
+  .block-card:hover {
+    @apply transform -translate-y-0.5;
+  }
+
+  .block-card.expanded {
+    @apply ring-2 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+  }
+
+  /* Category color borders */
+  .category-border-foundations {
+    @apply border-l-4 border-l-blue-500;
+  }
+
+  .category-border-data {
+    @apply border-l-4 border-l-green-500;
+  }
+
+  .category-border-learning {
+    @apply border-l-4 border-l-orange-500;
+  }
+
+  .category-border-optimization {
+    @apply border-l-4 border-l-yellow-500;
+  }
+
+  .category-border-regularization {
+    @apply border-l-4 border-l-purple-500;
+  }
+
+  .category-border-evaluation {
+    @apply border-l-4 border-l-teal-500;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-beginner {
+    @apply bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400;
+  }
+
+  .badge-intermediate {
+    @apply bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400;
+  }
+
+  .badge-advanced {
+    @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400;
+  }
+
+  /* Section badge */
+  .section-badge {
+    @apply px-2 py-0.5 text-xs rounded-full;
+    @apply bg-gray-100 text-gray-600;
+    @apply dark:bg-gray-700 dark:text-gray-300;
+  }
+
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply dark:focus:ring-offset-gray-900;
+  }
+
+  /* Icon button */
+  .icon-button {
+    @apply p-2 rounded-full transition-colors duration-150;
+    @apply hover:bg-gray-100 dark:hover:bg-gray-700;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+}
+
+@layer utilities {
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Animation utilities */
+  .transform-origin-top {
+    transform-origin: top;
+  }
+
+  /* Reduced motion - respect user preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .animate-expand,
+    .animate-collapse,
+    .animate-fade-in,
+    .animate-scale-in,
+    .animate-spin {
+      animation: none !important;
+    }
+  }
+
+  /* Touch-friendly tap targets */
+  @media (pointer: coarse) {
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
